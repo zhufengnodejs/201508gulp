@@ -1,26 +1,23 @@
 var gulp = require('gulp');
-/**
- *  第一个参数是任务的名字
- *  第二个参数是本任务要执行前依赖的任务，本任务执行前哪些任务要先执行
- *  第三个参数是任务的定义
- */
-var aaa=10;
-gulp.task('1',function(){
-    console.log('1');
-});
-gulp.task('2',function(cb){
-    setTimeout(function(){
-        console.log('2');
-        aaa+=2;
-        cb();
-    },3000)
 
-});
-gulp.task('3',function(){
-    console.log('3');
-    aaa+=3;
-});
-//组合任务
-gulp.task('default',['1','2','3'],function(){
-    console.log(aaa);
+
+gulp.task('default',function(){
+    gulp.watch('src/*',function(event){
+        // path 变化的文件路径 type 变化的文件类型
+        if(event.type == 'added'){
+            console.log(event.path,'增加了');
+            var path = event.path;//得到文件的绝对路径
+            //d:\gulpdemo\src\index.js
+            // src/index.js
+            //__dirname当前文件的所在目录的绝对路径
+            gulp.src(path.slice(__dirname.length+1))
+                .pipe(gulp.dest('dist/'));
+        }else if(event.type == 'changed'){
+            console.log(event.path,'修改了');
+            gulp.src(event.path.slice(__dirname.length+1))
+                .pipe(gulp.dest('dist/'));
+        }else if(event.type == 'deleted'){
+            console.log(event.path,'删除');
+        }
+    });
 });
