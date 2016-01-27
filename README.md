@@ -1,4 +1,4 @@
-#安装
+#一、安装
 ##1. 在任意目录新建文件夹
 文件夹名称不能叫**gulp**
 
@@ -41,7 +41,7 @@ gulp
 >  [10:54:30] No gulpfile found
 
 
-#定义gulp任务
+#二、定义gulp任务
 ##1. 在项目根目录下创建 `gulpfile.js` 文件
 
 ##2.新建任务
@@ -67,3 +67,28 @@ gulp.task('default',function(){
 或者  右键 `git bash`
 
 从而执行`gulpfile.js`中定义的任务
+
+
+#三、gulpfile命令行参数
+##1. 显示版本号
+-v 或 --version 会显示全局和项目本地所安装的 gulp 版本号
+```
+D:\gulpdemo>gulp -v
+[12:34:45] CLI version 3.9.0 全局安装的版本号
+[12:34:45] Local version 3.9.0 本地安装的版本号
+```
+
+##2. 指定一个 gulpfile 的路径
+```
+D:\gulpdemo>gulp --gulpfile=g.js
+```
+
+##3. 显示所指定 gulpfile 的 task 依赖树
+```bash
+D:\gulpdemo>gulp -T
+[12:45:10] Using gulpfile D:\gulpdemo\gulpfile.js
+[12:45:10] Tasks for D:\gulpdemo\gulpfile.js
+[12:45:10] ├── hello
+[12:45:10] └─┬ default
+[12:45:10]   └── hello
+```
