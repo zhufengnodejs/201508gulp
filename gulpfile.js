@@ -1,12 +1,22 @@
 var gulp = require('gulp');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
-gulp.task('uglify',function(){
-    gulp.src('app/js/*.js')
-        .pipe(concat('all.js'))
-        .pipe(gulp.dest('dist'))//先保存一下
-        .pipe(uglify())
-        .pipe(rename('all.min.js'))
-        .pipe(gulp.dest('dist'));//再保存一下
+var connect = require('gulp-connect');
+
+gulp.task('copy-html',function(){
+    gulp.src('app/index.html')
+        .pipe(gulp.dest('dist'))
+        .pipe(connect.reload());//自动刷新浏览器
 });
+
+gulp.task('watch',function(){
+    gulp.watch('app/index.html',['copy-html']);
+});
+
+gulp.task('server',function(){
+    connect.server({
+        root:'dist',//服务器的根目录
+        port:8080, //服务器的地址，没有此配置项默认也是 8080
+        livereload:true//启用实时刷新的功能
+    });
+});
+//运行此任务的时候会在8080上启动服务器，组合任务
+gulp.task('default',['server','watch']);
