@@ -39,3 +39,31 @@ gulp
 如果输出这个就成功了
 > D:\gulpstudy>gulp
 >  [10:54:30] No gulpfile found
+
+
+#定义gulp任务
+##1. 在项目根目录下创建 `gulpfile.js` 文件
+
+##2.新建任务
+```javascript
+//引入本地安装的gulp模块，需要先安装本地gulp  `npm install gulp`
+var gulp = require('gulp');
+/**
+ * 定义任务
+ *  第一个参数是任务的名字
+ *  第二个参数是任务的定义
+ * 当执行任务的是后就是让这个函数执行
+ */
+gulp.task('default',function(){
+    console.log('default1');
+});
+```
+
+#3.执行任务
+进入当前的项目根目录
+
+或者  按`shift`右键打开命令行窗口，输入 `gulp default`
+
+或者  右键 `git bash`
+
+从而执行`gulpfile.js`中定义的任务
