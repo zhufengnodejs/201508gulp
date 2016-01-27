@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-
+var fs = require('fs');
 
 gulp.task('default',function(){
     gulp.watch('src/*',function(event){
@@ -18,6 +18,8 @@ gulp.task('default',function(){
                 .pipe(gulp.dest('dist/'));
         }else if(event.type == 'deleted'){
             console.log(event.path,'删除');
+            //console.log(__dirname+'\\dist\\a.js');
+            //fs.unlinkSync(__dirname+'/dist/a.js');
         }
     });
 });
