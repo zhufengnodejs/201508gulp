@@ -8,7 +8,7 @@ npm init
 ```
 一路回车，都用默认设置
 如果没反应就 `ctrl+c` 退出命令
-
+最后会生成一个`package.json`的配置文件.
 3. 全局安装gulp
 ```
  npm install gulp -g
